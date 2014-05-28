@@ -29,7 +29,7 @@
 
 			timeout = setTimeout(delayed, threshold || 100);
 		};
-	}
+	};
 	// smartresize
 	jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
 
@@ -59,7 +59,8 @@
 					event: 'keyup',
 					keyCode: 27
 				}
-			]
+			],
+			showCaptions: false
 		}, opts);
 
 		// Ensure that the stackIndex does not become negative
@@ -67,10 +68,16 @@
 
 		// Dynamically create overlay
 		$fbOverlay = $('<div />', {
-			class: 'fluidbox-overlay',
-			css: {
+			'class': 'fluidbox-overlay',
+			'css': {
 				'background-color': settings.overlayColor,
 				'z-index': settings.stackIndex
+			}
+		});
+		$fbCaption = $('<div />', {
+			'class': 'fluidbox-caption',
+			'css': {
+				'z-index': settings.stackIndex + 1
 			}
 		});
 
@@ -103,10 +110,17 @@
 				// For offsetX and Y, we round to one decimal place
 				// For scale, we round to three decimal places
 				$ghost.css({
-					'transform': 'translate('+parseInt(offsetX*10)/10+'px,'+parseInt(offsetY*10)/10+'px) scale('+parseInt(scale*1000)/1000+')',
+					'transform': 'translate('+parseInt(offsetX*10, 10)/10+'px,'+parseInt(offsetY*10, 10)/10+'px) scale('+parseInt(scale*1000, 10)/1000+')',
 					top: $img.offset().top - $wrap.offset().top,
 					left: $img.offset().left - $wrap.offset().left
 				});
+				if (settings.showCaptions) {
+					var title = $img.attr('title');
+					if (title) {
+						$fbCaption.text(title);
+						$ghost.append($fbCaption);
+					}
+				}
 			},
 			funcCalcAll = function() {
 				$fb.each(function () {
@@ -134,8 +148,8 @@
 						$ghost.css({
 							width: $img.width(),
 							height: $img.height(),
-							top: $img.offset().top - $wrap.offset().top + parseInt($img.css('borderTopWidth')) + parseInt($img.css('paddingTop')),
-							left: $img.offset().left - $wrap.offset().left + parseInt($img.css('borderLeftWidth')) + parseInt($img.css('paddingLeft'))
+							top: $img.offset().top - $wrap.offset().top + parseInt($img.css('borderTopWidth'), 10) + parseInt($img.css('paddingTop'), 10),
+							left: $img.offset().left - $wrap.offset().left + parseInt($img.css('borderLeftWidth'), 10) + parseInt($img.css('paddingLeft'), 10)
 						});
 
 						// Calculate scale based on orientation
@@ -242,8 +256,8 @@
 						$ghost.css({
 							'transform': 'translate(0,0) scale(1)',
 							opacity: 0,
-							top: $img.offset().top - $wrap.offset().top + parseInt($img.css('borderTopWidth')) + parseInt($img.css('paddingTop')),
-							left: $img.offset().left - $wrap.offset().left + parseInt($img.css('borderLeftWidth')) + parseInt($img.css('paddingLeft'))
+							top: $img.offset().top - $wrap.offset().top + parseInt($img.css('borderTopWidth'), 10) + parseInt($img.css('paddingTop'), 10),
+							left: $img.offset().left - $wrap.offset().left + parseInt($img.css('borderLeftWidth'), 10) + parseInt($img.css('paddingLeft'), 10)
 						});
 						$img.css({ opacity: 1 });
 					}
@@ -291,8 +305,8 @@
 
 				// Define wrap
 				var $fbInnerWrap = $('<div />', {
-					class: 'fluidbox-wrap',
-					css: {
+					'class': 'fluidbox-wrap',
+					'css': {
 						'z-index': settings.stackIndex - settings.stackIndexDelta
 					}
 				});
@@ -333,7 +347,7 @@
 			// Reposition Fluidbox, but only if one is found to be open
 			var $activeFb = $('a.fluidbox.fluidbox-opened');
 			if($activeFb.length > 0) funcPositionFb($activeFb);
-		}
+		};
 
 		if(settings.debounceResize) {
 			$(window).smartresize(funcResize);

@@ -204,11 +204,14 @@
 		</svg>
 		<p>Made by <a href="http://terrymun.com/" title="Terry Mun">Terry Mun</a> &middot; 2014.</p>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-		<script type="text/javascript" src="jquery.fluidbox.min.js"></script>
+		<!-- script type="text/javascript" src="jquery.fluidbox.min.js"></script -->
+		<script type="text/javascript" src="jquery.fluidbox.js"></script>
 		<script>
 			$(function () {
 				// You can use any kind of selectors for jQuery Fluidbox
-				$('.demo a').fluidbox();
+				$('.demo a').fluidbox({
+					showCaptions: true
+				});
 
 				// Load an image dynamically
 				$('a[data-func="loadImg"]').on('click', function(e) {
