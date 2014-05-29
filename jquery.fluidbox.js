@@ -264,9 +264,6 @@
 							left: $img.offset().left - $wrap.offset().left + parseInt($img.css('borderLeftWidth'), 10) + parseInt($img.css('paddingLeft'), 10)
 						});
 						$img.css({ opacity: 1 });
-
-						// remove caption
-						$activeFb.remove($activeFb.find('.fluidbox-caption'));
 					}
 
 					e.preventDefault();
