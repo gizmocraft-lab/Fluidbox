@@ -20,7 +20,7 @@
 				if (!execAsap)
 				func.apply(obj, args);
 				timeout = null;
-			};
+			}
 
 			if (timeout)
 				clearTimeout(timeout);
@@ -117,8 +117,27 @@
 				if(settings.showCaptions) {
 					var title = $img.attr('title');
 					if(title) {
-						$fbCaption.text(title).hide();
+						$fbCaption.text(title);
 						$ghost.append($fbCaption);
+
+						//
+						// adjust style according to scale
+						//
+						var fontSize;
+						$caption = $activeFb.find('.fluidbox-caption');
+						// get computed style
+						if (typeof $caption.data('font-size') === 'undefined') {
+							// store original style
+							fontSize = $caption.css('font-size');
+							$caption.data('font-size', fontSize);
+						} else {
+							fontSize = $caption.data('font-size');
+						}
+						// scale style
+						var m = fontSize.match(/^(\d+(?:\.\d+)?)(.*)$/);		// http://stackoverflow.com/questions/2868947/split1px-into-1px-1-px-in-javascript
+						var scaledFontSize = m[1] / scale + m[2];
+						// set scaled style
+						$caption.css('font-size', scaledFontSize);
 					}
 				}
 			},
@@ -138,7 +157,7 @@
 						$wrap	= $fbItem.find('.fluidbox-wrap'),
 						data	= $img.data();
 
-					function imageProp() {
+					var imageProp = function() {
 						// Store image dimensions in jQuery object
 						data.imgWidth	= $img.width();
 						data.imgHeight	= $img.height();
@@ -157,10 +176,10 @@
 							data.imgScale = $w.height()*settings.viewportFill/$img.height();
 						} else {
 							data.imgScale = $w.width()*settings.viewportFill/$img.width();
-						}						
-					}
+						}
+					};
 
-					imageProp();					
+					imageProp();
 
 					// Rerun everything on imageload, to overcome issue in Firefox
 					$img.load(imageProp);
@@ -325,7 +344,7 @@
 					.after('<div class="fluidbox-ghost" />')
 					.each(function(){
 						var $img = $(this);
-						
+
 						if ($img.width() > 0 && $img.height() > 0) {
 							// if image is already loaded (from cache)
 							funcCalc($fbItem);
@@ -351,9 +370,6 @@
 			// Reposition Fluidbox, but only if one is found to be open
 			var $activeFb = $('a.fluidbox.fluidbox-opened');
 			if($activeFb.length > 0) funcPositionFb($activeFb);
-			if(settings.showCaptions) {
-				$activeFb.find('.fluidbox-caption').show();
-			}
 		};
 
 		if(settings.debounceResize) {
