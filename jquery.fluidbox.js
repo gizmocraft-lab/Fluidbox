@@ -117,7 +117,7 @@
 				if(settings.showCaptions) {
 					var title = $img.attr('title');
 					if(title) {
-						$fbCaption.text(title).hide();
+						$fbCaption.text(title);
 						$ghost.append($fbCaption);
 					}
 				}
@@ -351,9 +351,6 @@
 			// Reposition Fluidbox, but only if one is found to be open
 			var $activeFb = $('a.fluidbox.fluidbox-opened');
 			if($activeFb.length > 0) funcPositionFb($activeFb);
-			if(settings.showCaptions) {
-				$activeFb.find('.fluidbox-caption').show();
-			}
 		};
 
 		if(settings.debounceResize) {
