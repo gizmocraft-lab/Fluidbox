@@ -227,7 +227,6 @@
 								$ghost.css({ 'background-image': 'url('+$activeFb.attr('href')+')' });
 								// show captions
 								if(settings.showCaptions) {
-									console.log($activeFb, $activeFb.find('.fluidbox-caption'));
 									$activeFb.find('.fluidbox-caption').show();
 								}
 							});
