@@ -119,6 +119,25 @@
 					if(title) {
 						$fbCaption.text(title);
 						$ghost.append($fbCaption);
+
+						//
+						// adjust style according to scale
+						//
+						var fontSize;
+						$caption = $activeFb.find('.fluidbox-caption');
+						// get computed style
+						if (typeof $caption.data('font-size') === 'undefined') {
+							// store original style
+							fontSize = $caption.css('font-size');
+							$caption.data('font-size', fontSize);
+						} else {
+							fontSize = $caption.data('font-size');
+						}
+						// scale style
+						var m = fontSize.match(/^(\d+(?:\.\d+)?)(.*)$/);		// http://stackoverflow.com/questions/2868947/split1px-into-1px-1-px-in-javascript
+						var scaledFontSize = m[1] / scale + m[2];
+						// set scaled style
+						$caption.css('font-size', scaledFontSize);
 					}
 				}
 			},
