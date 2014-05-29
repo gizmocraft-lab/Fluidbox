@@ -20,7 +20,7 @@
 				if (!execAsap)
 				func.apply(obj, args);
 				timeout = null;
-			};
+			}
 
 			if (timeout)
 				clearTimeout(timeout);
@@ -138,7 +138,7 @@
 						$wrap	= $fbItem.find('.fluidbox-wrap'),
 						data	= $img.data();
 
-					function imageProp() {
+					var imageProp = function() {
 						// Store image dimensions in jQuery object
 						data.imgWidth	= $img.width();
 						data.imgHeight	= $img.height();
@@ -157,10 +157,10 @@
 							data.imgScale = $w.height()*settings.viewportFill/$img.height();
 						} else {
 							data.imgScale = $w.width()*settings.viewportFill/$img.width();
-						}						
-					}
+						}
+					};
 
-					imageProp();					
+					imageProp();
 
 					// Rerun everything on imageload, to overcome issue in Firefox
 					$img.load(imageProp);
@@ -264,6 +264,9 @@
 							left: $img.offset().left - $wrap.offset().left + parseInt($img.css('borderLeftWidth'), 10) + parseInt($img.css('paddingLeft'), 10)
 						});
 						$img.css({ opacity: 1 });
+
+						// remove caption
+						$activeFb.remove($activeFb.find('.fluidbox-caption'));
 					}
 
 					e.preventDefault();
@@ -325,7 +328,7 @@
 					.after('<div class="fluidbox-ghost" />')
 					.each(function(){
 						var $img = $(this);
-						
+
 						if ($img.width() > 0 && $img.height() > 0) {
 							// if image is already loaded (from cache)
 							funcCalc($fbItem);
