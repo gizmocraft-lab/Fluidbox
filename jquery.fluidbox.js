@@ -114,10 +114,10 @@
 					top: $img.offset().top - $wrap.offset().top,
 					left: $img.offset().left - $wrap.offset().left
 				});
-				if (settings.showCaptions) {
+				if(settings.showCaptions) {
 					var title = $img.attr('title');
-					if (title) {
-						$fbCaption.text(title);
+					if(title) {
+						$fbCaption.text(title).hide();
 						$ghost.append($fbCaption);
 					}
 				}
@@ -225,6 +225,11 @@
 								src: $activeFb.attr('href')
 							}).load(function() {
 								$ghost.css({ 'background-image': 'url('+$activeFb.attr('href')+')' });
+								// show captions
+								if(settings.showCaptions) {
+									console.log($activeFb, $activeFb.find('.fluidbox-caption'));
+									$activeFb.find('.fluidbox-caption').show();
+								}
 							});
 
 							// Position Fluidbox
