@@ -122,22 +122,52 @@
 
 						//
 						// adjust style according to scale
+						// TODO: refactor; create generic/smarter solution
 						//
-						var fontSize;
+						var fontSize, scaledFontSize,
+							paddingTop, scaledPaddingTop,
+							paddingRight, scaledPaddingRight,
+							paddingBottom, scaledPaddingBottom,
+							paddingLeft, scaledPaddingLeft,
+							m;
 						$caption = $activeFb.find('.fluidbox-caption');
 						// get computed style
 						if (typeof $caption.data('font-size') === 'undefined') {
 							// store original style
 							fontSize = $caption.css('font-size');
+							paddingTop = $caption.css('padding-top');
+							paddingRight = $caption.css('padding-right');
+							paddingBottom = $caption.css('padding-bottom');
+							paddingLeft = $caption.css('padding-left');
 							$caption.data('font-size', fontSize);
+							$caption.data('padding-top', paddingTop);
+							$caption.data('padding-right', paddingRight);
+							$caption.data('padding-bottom', paddingBottom);
+							$caption.data('padding-left', paddingLeft);
 						} else {
 							fontSize = $caption.data('font-size');
+							paddingTop = $caption.data('padding-top');
+							paddingRight = $caption.data('padding-right');
+							paddingBottom = $caption.data('padding-bottom');
+							paddingLeft = $caption.data('padding-left');
 						}
 						// scale style
-						var m = fontSize.match(/^(\d+(?:\.\d+)?)(.*)$/);		// http://stackoverflow.com/questions/2868947/split1px-into-1px-1-px-in-javascript
-						var scaledFontSize = m[1] / scale + m[2];
+						m = fontSize.match(/^(\d+(?:\.\d+)?)(.*)$/);		// http://stackoverflow.com/questions/2868947/split1px-into-1px-1-px-in-javascript
+						scaledFontSize = m[1] / scale + m[2];
+						m = paddingTop.match(/^(\d+(?:\.\d+)?)(.*)$/);
+						scaledPaddingTop = m[1] / scale + m[2];
+						m = paddingRight.match(/^(\d+(?:\.\d+)?)(.*)$/);
+						scaledPaddingRight = m[1] / scale + m[2];
+						m = paddingBottom.match(/^(\d+(?:\.\d+)?)(.*)$/);
+						scaledPaddingBottom = m[1] / scale + m[2];
+						m = paddingLeft.match(/^(\d+(?:\.\d+)?)(.*)$/);
+						scaledPaddingLeft = m[1] / scale + m[2];
 						// set scaled style
 						$caption.css('font-size', scaledFontSize);
+						$caption.css('padding-top', scaledPaddingTop);
+						$caption.css('padding-right', scaledPaddingRight);
+						$caption.css('padding-bottom', scaledPaddingBottom);
+						$caption.css('padding-left', scaledPaddingLeft);
 					}
 				}
 			},
