@@ -60,16 +60,6 @@
 					keyCode: 27		// esc
 				},
 				{
-					selector: 'document',
-					event: 'keyup',
-					keyCode: 38		// up
-				},
-				{
-					selector: 'document',
-					event: 'keyup',
-					keyCode: 40		// down
-				},
-				{
 					selector: 'window',
 					event: 'scroll'
 				}
