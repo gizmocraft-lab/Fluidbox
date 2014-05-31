@@ -281,21 +281,20 @@
 				// adjust style according to scale
 				var style, scaledStyle, m;
 
-				// TODO: support for IE8 required?
-				styles.forEach(function(s) {
-					if (typeof caption.data(s) === 'undefined') {
+				for(var i = 0; i < styles.length; i++) {
+					if (typeof caption.data(styles[i]) === 'undefined') {
 						// store original style
-						style = caption.css(s);
-						caption.data(s, style);
+						style = caption.css(styles[i]);
+						caption.data(styles[i], style);
 					} else {
-						style = caption.data(s);
+						style = caption.data(styles[i]);
 					}
 					// scale style
 					m = style.match(/^(\d+(?:\.\d+)?)(.*)$/);		// http://stackoverflow.com/questions/2868947/split1px-into-1px-1-px-in-javascript
 					scaledStyle = m[1] / scale + m[2];
 					// set scaled style
-					caption.css(s, scaledStyle);
-				});
+					caption.css(styles[i], scaledStyle);
+				}
 			};
 
 		// When should we close Fluidbox?
