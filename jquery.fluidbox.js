@@ -120,24 +120,13 @@
 						$fbCaption.text(title);
 						$ghost.append($fbCaption);
 
-						//
-						// adjust style according to scale
-						//
-						var fontSize;
-						$caption = $activeFb.find('.fluidbox-caption');
-						// get computed style
-						if (typeof $caption.data('font-size') === 'undefined') {
-							// store original style
-							fontSize = $caption.css('font-size');
-							$caption.data('font-size', fontSize);
-						} else {
-							fontSize = $caption.data('font-size');
-						}
-						// scale style
-						var m = fontSize.match(/^(\d+(?:\.\d+)?)(.*)$/);		// http://stackoverflow.com/questions/2868947/split1px-into-1px-1-px-in-javascript
-						var scaledFontSize = m[1] / scale + m[2];
-						// set scaled style
-						$caption.css('font-size', scaledFontSize);
+						fbStyleScaler($activeFb.find('.fluidbox-caption'), scale, [
+							'font-size',
+							'padding-top',
+							'padding-right',
+							'padding-bottom',
+							'padding-left'
+						]);
 					}
 				}
 			},
@@ -287,6 +276,26 @@
 
 					e.preventDefault();
 				}
+			},
+			fbStyleScaler = function(caption, scale, styles) {
+				// adjust style according to scale
+				var style, scaledStyle, m;
+
+				// TODO: support for IE8 required?
+				styles.forEach(function(s) {
+					if (typeof caption.data(s) === 'undefined') {
+						// store original style
+						style = caption.css(s);
+						caption.data(s, style);
+					} else {
+						style = caption.data(s);
+					}
+					// scale style
+					m = style.match(/^(\d+(?:\.\d+)?)(.*)$/);		// http://stackoverflow.com/questions/2868947/split1px-into-1px-1-px-in-javascript
+					scaledStyle = m[1] / scale + m[2];
+					// set scaled style
+					caption.css(s, scaledStyle);
+				});
 			};
 
 		// When should we close Fluidbox?
