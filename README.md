@@ -42,7 +42,7 @@ To install Fluidbox, you will have to include the following resources in your pa
 
 | Type | File Name            | Description                                                                                                            |
 |------|----------------------|------------------------------------------------------------------------------------------------------------------------|
-| JS   | [jQuery 1.x](http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js) | **External Dependency**: The *latest verson* of jQuery 1.x library is needed for Fluidbox functionality.       |
+| JS   | [jQuery 1.x](http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js) | **External Dependency**: The *latest verson* of jQuery 1.x library is needed for Fluidbox functionality (minimum requirement: v1.8).       |
 | JS   | `jquery.fluidbox.js` | Confers the main functionality of Fluidbox. Alternatively, you can load the minified version, `jquery.fluidbox.min.js` |
 | CSS  | `css/fluidbox.css`   | Offers styles that are crucial for the correct display of Fluidbox. The appearance will break if this is not included. |
 
@@ -176,7 +176,7 @@ As Fluidbox relies on CSS transforms, it only works with thumbnails that share t
 ## Dependencies
 Fluidbox require the following dependencies in order to function properly &mdash; you will have to include them in your page, if you want Fluidbox to work:
 
-- **The latest release of jQuery 1.x** (minimum requirement: jQuery &gt;1.7), available from [Google's jQuery API](http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js) at `http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js`
+- **The latest release of jQuery 1.x** (minimum requirement: jQuery 1.8), available from [Google's jQuery API](http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js) at `http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js`
 
 Note that the **imagesloaded jQuery plugin** is no longer required as of v1.2.8 and above.
 
@@ -184,7 +184,7 @@ Fluidbox allows you to throttle the `$(window).resize()` event, and this is only
 
 ## Frequently Asked Quesitons
 1.  **Fluidbox is not working in my installation. Where should I start?**  
-Start by checking your browser's console log. What error messages do you see? Also, make sure that you are using the *latest* version of jQuery 1.x (minimum requirement: v1.8 or above) and that the dependencies have been loaded successfully.
+Start by checking your browser's console log. What error messages do you see? Also, make sure that you are using the *latest* version of jQuery 1.x (minimum requirement: v1.8) and that the dependencies have been loaded successfully.
 
 2.  **Do you plan to implement [insert feature]?**  
 Fluidbox is conceived as a means to simplify lightboxes. Therefore, I plan to keep Fluidbox as simple as it is, without additional features, such as gallery features. However, you can always fork and modify Fluidbox to your personal liking.
