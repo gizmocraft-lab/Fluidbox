@@ -57,7 +57,11 @@
 				{
 					selector: 'document',
 					event: 'keyup',
-					keyCode: 27
+					keyCode: 27		// esc
+				},
+				{
+					selector: 'window',
+					event: 'scroll'
 				}
 			],
 			showCaptions: false
