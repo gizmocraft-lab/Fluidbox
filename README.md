@@ -54,7 +54,7 @@ It is rather straightforward to use Fluidbox &mdash; simply chain the `.fluidbox
 2. Contains one and *only* one child
 3. The only children is an `<img>` element
 
-In the event that the element that satisfies the selector criteria but failed any one of the above criteria, the element will be ignored and the plugin moves on to the next available element. Therefore, it is important that your Fluidbox element(s) follow the following format. The `title` and `alt` attributes of the `<img>` element is not used by the plugin, but the `alt` attribute has to be present for it to be semantically valid.
+In the event that the element that satisfies the selector criteria but failed any one of the above criteria, the element will be ignored and the plugin moves on to the next available element. Therefore, it is important that your Fluidbox element(s) follow the following format. The `alt` attribute of the `<img>` element is not used by the plugin, but it has to be present to be semantically valid. If the `showCaptions` configuration setting is enabled (see **Configuration** below), the `title` attribute will be used to show the image caption.
 
 ```html
 <a href="...">
@@ -104,7 +104,7 @@ Fluidbox can be configured according to your needs. The following options are av
 | `debounceResize` | Boolean   | `true`        | Dictates if the `$(window).resize()` event should be debounced for performance reason. This feature leverages the [small snippet kindly provided by Paul Irish](http://www.paulirish.com/2009/throttled-smartresize-jquery-event-handler/). |
 | `closeTrigger`   | Array     | *see below*   | Dictates what event triggers closing of an opened Fluidbox. The default setup binds the click handler to the overlay. |
 | `stackIndex`  | Integer   | `999`         | Determines how high up the z-index will all Fluildbox elements be. Leave this option as default, unless you have other relatively or absolutely positioned elements on the page that is messing with Fluidbox appearance. |
-| `showCaptions`   | Boolean   | `true`        | Show captions using the image’s title attribute. |
+| `showCaptions`   | Boolean   | `true`        | Show captions using the `title` attribute of the `<img>` element. |
 
 #### Note on `closeTrigger` option
 The default setup will have the effect of binding the click event to the overlay, so that when user click on the overlay, the Fluidbox instance that is opened will be closed:
